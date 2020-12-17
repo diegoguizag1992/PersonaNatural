@@ -1,0 +1,616 @@
+<div class="container mt-3">
+  <h2>Persona Natural </h2>
+</div>
+
+<div class="container  mt-3">
+
+<mat-card>
+
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup" autocomplete="off">
+      <ng-template matStepLabel>Información General</ng-template>
+      <div class=" d-flex justify-content-center mt-3">
+      <mat-card class="col-sm-10">
+        <div class="container">
+          <div class="row">
+            <div class="colum col-sm-6">
+              <div class="">
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Fecha</mat-label>
+                  <input matInput [matDatepicker]="picker" formControlName="fecha">
+                  <mat-datepicker-toggle matSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="colum col-sm-6">
+              <div  class="mt-2">
+                <mat-form-field class="w-100">
+                  <input matInput placeholder="Razón social" type="text" formControlName="razonSocialCertificado"/>
+                  <mat-error *ngIf="firstFormGroup.get('razonSocialCertificado').hasError('required')">
+                    Este campo es obligatorio.
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('razonSocialCertificado').hasError('minlength')">
+                    La longitud del texto excede el mínimo permitido.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="colum col-sm-6">
+              <div class="">
+                <mat-form-field class="w-100">
+                  <mat-label>Tipo de documento</mat-label>
+                  <mat-select formControlName="tipoDocumento" [(value)]="document" (selectionChange)="selectDocument(document)">
+                    <mat-option disabled value="Seleccione">
+                      Seleccione un tipo de documento
+                    </mat-option>
+                    <mat-option value="Nit">
+                      Nit
+                    </mat-option>
+                    <mat-option value="Otro">
+                      Otro (cual)
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="firstFormGroup.get('tipoDocumento').hasError('required') ">
+                    Este campo es obligatorio.
+                  </mat-error>
+                </mat-form-field>
+                </div>
+            </div>
+            <div class="colum col-sm-6">
+              <div  class="">
+                <mat-form-field class="w-100">
+                  <input matInput placeholder="{{somePlaceholder}}" type="text" formControlName="documento"/>
+                  <mat-error *ngIf="firstFormGroup.get('documento').hasError('required')">
+                    Este campo es obligatorio.
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('documento').hasError('minlength')">
+                    La longitud del texto excede el mínimo permitido.
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('documento').hasError('maxlength')">
+                    Este campo solo acepta maximo 10 caracteres
+                 </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('documento').hasError('pattern')">
+                    El documento no puede contener letras.
+                    </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="colum col-sm-6">
+              <div class="">
+                <mat-form-field class="w-100">
+                  <mat-label>Residencia actual</mat-label>
+                  <mat-select formControlName="residencia" [(value)]="residencia" (selectionChange)="selectDocument(residencia)">
+                    <mat-option disabled value="Seleccione">
+                      Seleccione su residencia actual
+                    </mat-option>
+                    <mat-option value="Cedula ciudadania">
+                      Residente
+                    </mat-option>
+                    <mat-option value="Otro">
+                      No residente
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="firstFormGroup.get('residencia').hasError('required') ">
+                    Este campo es obligatorio.
+                  </mat-error>
+                </mat-form-field>
+                </div>
+            </div>
+            <div class="colum col-sm-6">
+              <div  class="">
+                <mat-form-field class="w-100">
+                  <input matInput placeholder="País" type="text" formControlName="pais"/>
+                  <mat-error *ngIf="firstFormGroup.get('pais').hasError('required')">
+                    Este campo es obligatorio.
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('pais').hasError('minlength')">
+                    La longitud del texto excede el mínimo permitido.
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('pais').hasError('pattern')">
+                    El apellido no puede llevar números.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="colum col-sm-6">
+              <div  class="">
+                <mat-form-field class="w-100">
+                  <input matInput placeholder="Ciudad" type="text" formControlName="ciudad"/>
+                  <mat-error *ngIf="firstFormGroup.get('ciudad').hasError('required')">
+                    Este campo es obligatorio.
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('ciudad').hasError('minlength')">
+                    La longitud del texto excede el mínimo permitido.
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('ciudad').hasError('pattern')">
+                    El apellido no puede llevar números.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="colum col-sm-6">
+              <div  class="">
+                <mat-form-field class="w-100">
+                  <input matInput placeholder="Dirección" type="text" formControlName="direccion"/>
+                  <mat-error *ngIf="firstFormGroup.get('direccion').hasError('required')">
+                    Este campo es obligatorio.
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('direccion').hasError('minlength')">
+                    La longitud del texto excede el mínimo permitido.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="colum col-sm-6">
+              <div  class="">
+                <mat-form-field class="w-100">
+                  <input matInput placeholder="Teléfono" type="text" formControlName="telefono"/>
+                  <mat-error *ngIf="firstFormGroup.get('telefono').hasError('required')">
+                    Este campo es obligatorio.
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('telefono').hasError('minlength')">
+                    La longitud del texto excede el mínimo permitido.
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('telefono').hasError('maxlength')">
+                    Este campo solo acepta maximo 10 caracteres
+                 </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('telefono').hasError('pattern')">
+                    El documento no puede contener letras.
+                    </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="colum col-sm-6">
+              <div  class="">
+                <mat-form-field class="w-100">
+                  <input matInput placeholder="Correo electronico" type="text" formControlName="correoElectronico"/>
+                  <mat-error *ngIf="firstFormGroup.get('correoElectronico').hasError('required')">
+                    Este campo es obligatorio.
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('correoElectronico').hasError('pattern')">
+                    Ingrese un correo valido.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="colum col-sm-6">
+              <div  class="">
+                <mat-form-field class="w-100">
+                  <input matInput placeholder="Nombre representante legal" type="text" formControlName="nombreReprelegal"/>
+                  <mat-error *ngIf="firstFormGroup.get('nombreReprelegal').hasError('required')">
+                    Este campo es obligatorio.
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('nombreReprelegal').hasError('pattern')">
+                    El nombre no puede llevar números.
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('nombreReprelegal').hasError('minlength')">
+                    La longitud del texto excede el mínimo permitido.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="colum col-sm-6">
+              <div  class="">
+                <mat-form-field class="w-100">
+                  <input matInput placeholder="Número identificación representante legal" type="text" formControlName="identificacionReprelegal"/>
+                  <mat-error *ngIf="firstFormGroup.get('identificacionReprelegal').hasError('required')">
+                    Este campo es obligatorio.
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('identificacionReprelegal').hasError('minlength')">
+                    La longitud del texto excede el mínimo permitido.
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('identificacionReprelegal').hasError('maxlength')">
+                    Este campo solo acepta maximo 10 caracteres
+                 </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('identificacionReprelegal').hasError('pattern')">
+                    El documento no puede contener letras.
+                    </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="colum col-sm-6">
+              <div class="">
+                <mat-form-field class="w-100">
+                  <mat-label>Realiza operaciones internacionales</mat-label>
+                  <mat-select formControlName="operacionesInternacionales">
+                    <mat-option disabled value="Seleccione">
+                      Seleccione estado operaciones internacionales
+                    </mat-option>
+                    <mat-option value="Cedula ciudadania">
+                      Si
+                    </mat-option>
+                    <mat-option value="Otro">
+                      No
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="firstFormGroup.get('operacionesInternacionales').hasError('required') ">
+                    Este campo es obligatorio.
+                  </mat-error>
+                </mat-form-field>
+                </div>
+            </div>
+            <div class="colum col-sm-6">
+              <div class="">
+                <mat-form-field class="w-100">
+                  <mat-label>Manejo de recursos publicos</mat-label>
+                  <mat-select formControlName="manejoRecursospublicos">
+                    <mat-option disabled value="Seleccione">
+                      Seleccione si maneja recursos públicos
+                    </mat-option>
+                    <mat-option value="Cedula ciudadania">
+                      Si
+                    </mat-option>
+                    <mat-option value="Otro">
+                      No
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="firstFormGroup.get('manejoRecursospublicos').hasError('required') ">
+                    Este campo es obligatorio.
+                  </mat-error>
+                </mat-form-field>
+                </div>
+            </div>
+            <div class="colum col-sm-6">
+              <div class="">
+                <mat-form-field class="w-100">
+                  <mat-label>Maneja operación internacional</mat-label>
+                  <mat-select formControlName="operacionInternacional">
+                    <mat-option disabled value="Seleccione">
+                      Seleccione si maneja operación internacional
+                    </mat-option>
+                    <mat-option value="Cedula ciudadania">
+                      Si
+                    </mat-option>
+                    <mat-option value="Otro">
+                      No
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="firstFormGroup.get('operacionInternacional').hasError('required') ">
+                    Este campo es obligatorio.
+                  </mat-error>
+                </mat-form-field>
+                </div>
+            </div>
+            <div class="colum col-sm-6">
+              <div class="">
+                <mat-form-field class="w-100">
+                  <mat-label>Tipo de operación internacional</mat-label>
+                  <mat-select formControlName="tipoOperacionInternacional">
+                    <mat-option disabled value="Seleccione">
+                      Seleccione si maneja operación internacional
+                    </mat-option>
+                    <mat-option value="importaciones">
+                      Importaciones
+                    </mat-option>
+                    <mat-option value="exportaciones">
+                      Exportaciones
+                    </mat-option>
+                    <mat-option value="inversiones">
+                      Inversiones
+                    </mat-option>
+                    <mat-option value="prestamos">
+                      Prestamos
+                    </mat-option>
+                    <mat-option value="envío y/o recepción de giros">
+                      Envío y/o recepción de giros
+                    </mat-option>
+                    <mat-option value="pagos de servicios">
+                      Pagos de servicios
+                    </mat-option>
+                    <mat-option value="transferencias entre otras">
+                      Transferencias entre otras
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="firstFormGroup.get('tipoOperacionInternacional').hasError('required') ">
+                    Este campo es obligatorio.
+                  </mat-error>
+                </mat-form-field>
+                </div>
+            </div>
+          </div>
+        </div>
+        <br> <br>
+      </mat-card>
+      </div>
+
+      <div class="mt-5">
+        <button mat-raised-button matStepperNext class="buttonCA primary" type="submit" [disabled]="firstFormGroup.invalid">SIGUIENTE</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" label="Información tributaria">
+    <form [formGroup]="secondFormGroup" autocomplete="off">
+
+
+      <div class=" d-flex justify-content-center mt-3">
+        <mat-card class="col-sm-10">
+          <div class="container">
+            <div class="row">
+              <div class="colum col-sm-6">
+                <div class="">
+                  <mat-form-field class="w-100">
+                    <mat-label>Régimen simple de tributación</mat-label>
+                    <mat-select formControlName="regimenSimpletributacion">
+                      <mat-option disabled value="Seleccione">
+                        Seleccione regimen simple de tributación
+                      </mat-option>
+                      <mat-option value="Si">
+                        Si
+                      </mat-option>
+                      <mat-option value="No">
+                        No
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="secondFormGroup.get('regimenSimpletributacion').hasError('required') ">
+                      Este campo es obligatorio.
+                    </mat-error>
+                  </mat-form-field>
+                  </div>
+              </div>
+              <div class="colum col-sm-6">
+                <div class="">
+                  <mat-form-field class="w-100">
+                    <input matInput placeholder="Actividad económica Dian No." type="text" formControlName="actividadDian"/>
+                    <mat-error *ngIf="secondFormGroup.get('actividadDian').hasError('required')">
+                      Este campo es obligatorio.
+                    </mat-error>
+                    <mat-error *ngIf="secondFormGroup.get('actividadDian').hasError('minlength')">
+                      La longitud del texto excede el mínimo permitido.
+                    </mat-error>
+                    <mat-error *ngIf="secondFormGroup.get('actividadDian').hasError('pattern')">
+                      El documento no puede contener letras.
+                      </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="colum col-sm-6">
+                <div class="">
+                  <mat-form-field class="w-100">
+                    <input matInput placeholder="Actividad económica ICA No." type="text" formControlName="actividadIca"/>
+                    <mat-error *ngIf="secondFormGroup.get('actividadIca').hasError('required')">
+                      Este campo es obligatorio.
+                    </mat-error>
+                    <mat-error *ngIf="secondFormGroup.get('actividadIca').hasError('minlength')">
+                      La longitud del texto excede el mínimo permitido.
+                    </mat-error>
+                    <mat-error *ngIf="secondFormGroup.get('actividadIca').hasError('pattern')">
+                      El documento no puede contener letras.
+                      </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="colum col-sm-6">
+                <div class="">
+                  <mat-form-field class="w-100">
+                    <input matInput placeholder="Actividad económica tarifa" type="text" formControlName="actividadIcatarifa"/>
+                    <mat-error *ngIf="secondFormGroup.get('actividadIcatarifa').hasError('required')">
+                      Este campo es obligatorio.
+                    </mat-error>
+                    <mat-error *ngIf="secondFormGroup.get('actividadIcatarifa').hasError('minlength')">
+                      La longitud del texto excede el mínimo permitido.
+                    </mat-error>
+                    <mat-error *ngIf="secondFormGroup.get('actividadIcatarifa').hasError('pattern')">
+                      El documento no puede contener letras.
+                      </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="colum col-sm-6">
+                <div class="">
+                  <mat-form-field class="w-100">
+                    <mat-label>Responsabilidad de Iva</mat-label>
+                    <mat-select formControlName="responsabilidadIva">
+                      <mat-option disabled value="Seleccione">
+                        Seleccione la responsabilidad de iva
+                      </mat-option>
+                      <mat-option value="Si">
+                        Si
+                      </mat-option>
+                      <mat-option value="No">
+                        No
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="secondFormGroup.get('regimenSimpletributacion').hasError('required') ">
+                      Este campo es obligatorio.
+                    </mat-error>
+                  </mat-form-field>
+                  </div>
+              </div>
+              <div class="colum col-sm-6">
+                <div class="">
+                  <mat-form-field class="w-100">
+                    <input matInput placeholder="Banco" type="text" formControlName="banco"/>
+                    <mat-error *ngIf="secondFormGroup.get('banco').hasError('required')">
+                      Este campo es obligatorio.
+                    </mat-error>
+                    <mat-error *ngIf="secondFormGroup.get('banco').hasError('pattern')">
+                      El nombre no puede llevar números.
+                    </mat-error>
+                    <mat-error *ngIf="secondFormGroup.get('banco').hasError('minlength')">
+                      La longitud del texto excede el mínimo permitido.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="colum col-sm-6">
+                <div class="">
+                  <mat-form-field class="w-100">
+                    <input matInput placeholder="Cuenta bancaria No." type="text" formControlName="numeroCuenta"/>
+                    <mat-error *ngIf="secondFormGroup.get('numeroCuenta').hasError('required')">
+                      Este campo es obligatorio.
+                    </mat-error>
+                    <mat-error *ngIf="secondFormGroup.get('numeroCuenta').hasError('minlength')">
+                      La longitud del texto excede el mínimo permitido.
+                    </mat-error>
+                    <mat-error *ngIf="secondFormGroup.get('numeroCuenta').hasError('pattern')">
+                      El documento no puede contener letras.
+                      </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="colum col-sm-6">
+                <div class="">
+                  <mat-form-field class="w-100">
+                    <mat-label>Modalidad</mat-label>
+                    <mat-select formControlName="modalidad">
+                      <mat-option disabled value="Seleccione">
+                        Seleccione una modalidad
+                      </mat-option>
+                      <mat-option value="corriente">
+                        Corriente
+                      </mat-option>
+                      <mat-option value="ahorros">
+                        Ahorros
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="secondFormGroup.get('modalidad').hasError('required') ">
+                      Este campo es obligatorio.
+                    </mat-error>
+                  </mat-form-field>
+                  </div>
+              </div>
+              <div class="colum col-sm-6">
+                <div  class="">
+                  <mat-form-field class="w-100">
+                    <input matInput placeholder="País del banco" type="text" formControlName="paisBanco"/>
+                    <mat-error *ngIf="secondFormGroup.get('paisBanco').hasError('required')">
+                      Este campo es obligatorio.
+                    </mat-error>
+                    <mat-error *ngIf="secondFormGroup.get('paisBanco').hasError('pattern')">
+                      El nombre no puede llevar números.
+                    </mat-error>
+                    <mat-error *ngIf="secondFormGroup.get('paisBanco').hasError('minlength')">
+                      La longitud del texto excede el mínimo permitido.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="colum col-sm-6">
+                <div  class="">
+                  <mat-form-field class="w-100">
+                    <input matInput placeholder="Código ABA o SWIFT" type="text" formControlName="codigoSwift"/>
+                    <mat-error *ngIf="secondFormGroup.get('codigoSwift').hasError('required')">
+                      Este campo es obligatorio.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--
+
+
+              <div class="colum col-sm-6">
+                <div class="">
+                  <mat-form-field class="w-100">
+                    <mat-label>Manejo de recursos publicos</mat-label>
+                    <mat-select formControlName="manejoRecursospublicos">
+                      <mat-option disabled value="Seleccione">
+                        Seleccione si maneja recursos públicos
+                      </mat-option>
+                      <mat-option value="Cedula ciudadania">
+                        Si
+                      </mat-option>
+                      <mat-option value="Otro">
+                        No
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="secondFormGroup.get('tipoDocumento').hasError('required') ">
+                      Este campo es obligatorio.
+                    </mat-error>
+                  </mat-form-field>
+                  </div>
+              </div>  -->
+            </div>
+          </div>
+          <br> <br>
+        </mat-card>
+        </div>
+
+
+
+      <div class="mt-5">
+        <button mat-raised-button matStepperPrevious class="buttonCA-second mat-raised-button" type="button">ATRAS</button>
+        <button mat-raised-button matStepperNext class="buttonCA primary" type="submit" [disabled]="secondFormGroup.invalid">SIGUIENTE</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Tratamiento de datos</ng-template>
+
+    <div class=" d-flex justify-content-center mt-3">
+      <mat-card class="col-sm-10">
+        <div class="container">
+          <div class="row">
+            <div class="colum col-sm-12">
+              <p style="font-size: 12px;">Certifico que soy considerado una Persona Expuesta Públicamente (PEP),
+                o que tengo algún tipo de reconocimiento público de acuerdo a la normatividad vigente en Colombia.</p>
+            </div>
+            <div class="colum col-sm-12 text-center mt-3">
+              <mat-radio-group [(ngModel)]="favoriteSeason" #radioGroup="matRadioGroup">
+                <span class="mr-3" style="font-size: 16px;">Si</span> <mat-radio-button  class="mr-5" value="Si" ></mat-radio-button>
+                <span class="mr-3" style="font-size: 16px;">No</span> <mat-radio-button value="No" > </mat-radio-button>
+              </mat-radio-group>
+            </div>
+
+            <div class="colum col-sm-12 mt-5">
+              <p style="font-size: 12px;"> <strong> PEP: </strong>  Se cataloga personas que ocupen u ocuparon cargos públicos importantes, así como las personas
+                de reconocimiento público político a nivel nacional, departamental, distrital y municipal; Miembros de
+                las fuerzas militares y de policía en grado de Oficial hasta de Coronel; Tesorero en entidades del Estado;
+                Miembros afiliados a partidos políticos; Personas en ejercicio de artes (actuación, pintura, escultura,
+                escritura, etc.); Con ejercicio en la farándula (actores, modelos, reinas de belleza, presentadores de TV,
+                diseñadores, estilistas,etc.); Deportes; Ciencias entre otras . </p>
+            </div>
+
+            <div class="colum col-sm-12 mt-2">
+              <h3>  <strong> Tratamiento de datos </strong> </h3>
+              <p class="mt-2" style="font-size: 12px;"> 1. Los datos personales solicitados en el presente formato de conocimiento son requeridos por la institución atendiendo
+                las disposiciones de la Superintendencia Nacional de Salud de Colombia para prevenir y controlar el lavado de activos y
+                la financiación del terrorismo. </p>
+
+                <p style="font-size: 12px;"> 2. De conformidad con lo dispuesto en el literal b)  del Artículo 2 de la Ley 1581 de 2012, las disposiciones que buscan
+                la protección de datos personales y que se encuentran contenidos en dicha norma no son aplicables a las bases de datos y
+                archivos que tengan por finalidad la prevención, detección, monitoreo y control del lavado de activos y el financiamiento
+                del terrorismo, por lo que en principio su utilización no requeriría de una autorización de su titular debido a que esta se
+                encuentra  prevista en la Ley. </p>
+
+              <p style="font-size: 12px;"> 3. Los datos personales adicionales para el estudio técnico del riesgo del lavado de activos y financiación del terrorismo
+                se recolectan mediante este formato se trataran observando las Leyes 1581 de 2012 y 1266 de 2008 , así como el cumplimiento
+                de la política de tratamiento de datos personales de la Fundación Santa Fe de Bogotá la cual se encuentra a su disposición en
+                <strong> www.fsfb.org.co AUTORIZACIÓN: De manera expresa, previa e informada AUTORIZO el tratamiento de mis datos personales
+                  para las finalidades y en los términos que nos fueron informados en este documento. </strong></p>
+            </div>
+            <div class="colum col-sm-12 mt-2">
+              <h3>  <strong> Declaración de origen de fondos </strong> </h3>
+              <p style="font-size: 12px;">
+                1. Tanto mi actividad, profesión u oficio es lícita y la ejerzo dentro del marco legal y los recursos que poseo no provienen de actividades ilícitas de las contempladas en el Código Penal Colombiano. </p>
+              <p class="" style="font-size: 12px;"> 3. Los recursos que poseo provienen de la actividad(es) anteriormente descritas. </p>
+              <p class="" style="font-size: 12px;"> 4. Autorizo a la Fundación Santa Fe de Bogotá  para solicitar, consultar, procesar, suministrar, reportar o divulgar a cualquier entidad gubernamentales competentes la información contenida en este formato y demás información relativa al cumplimiento de mis obligaciones civiles y/o comerciales adquiridas con la FSFB. </p>
+            </div>
+            <div class="colum col-sm-12 mt-2">
+              <h3>  <strong> Firma representante legal </strong> </h3>
+              <div class="text-center mt-5">
+                <button mat-raised-button color="primary" class="" (click)="onSubmitTratamientoDatos()">Acepto  <mat-icon class="ml-3">done</mat-icon> </button>
+              </div>
+            </div>
+            <br> <br> <br>
+          </div>
+        </div>
+        <br> <br>
+      </mat-card>
+    </div>
+    <div class="mt-5">
+      <button mat-raised-button matStepperPrevious class="buttonCA-second mat-raised-button" type="button">ATRAS</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+</mat-card>
+</div>
+
+<br> <br> <br>
+<br> <br> <br>
+
+
+
